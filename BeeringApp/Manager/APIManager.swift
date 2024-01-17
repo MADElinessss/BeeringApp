@@ -14,7 +14,6 @@ struct APIManager {
         AF.request(url).responseDecodable(of: [Beer].self) { response in
             switch response.result {
             case .success(let success):
-                print(success)
                 completionHandler(success)
             case .failure(let failure):
                 print(failure)

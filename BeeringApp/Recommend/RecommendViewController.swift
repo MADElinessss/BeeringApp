@@ -20,6 +20,8 @@ class RecommendViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        descriptionLabel.numberOfLines = 0
+        fetchRandomBeer()
     }
     
     @IBAction func recommendButtonTapped(_ sender: UIButton) {
@@ -36,6 +38,7 @@ class RecommendViewController: UIViewController {
                 }
             }
         }
+        beerImage.reloadInputViews()
     }
     
     func updateUI(with beer: Beer) {
@@ -43,6 +46,7 @@ class RecommendViewController: UIViewController {
         descriptionLabel.text = beer.description
         if let url = URL(string: beer.image_url ?? "") {
             beerImage.kf.setImage(with: url)
+            beerImage.reloadInputViews()
         }
     }
 }

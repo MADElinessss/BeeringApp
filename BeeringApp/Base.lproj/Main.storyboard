@@ -17,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kP9-Eu-X5i">
-                                <rect key="frame" x="0.0" y="147" width="393" height="622"/>
+                                <rect key="frame" x="0.0" y="159" width="393" height="610"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="obk-4E-4u9">
-                                <rect key="frame" x="0.0" y="103" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="QZB-gv-Mcj"/>
@@ -35,7 +35,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kP9-Eu-X5i" secondAttribute="trailing" id="7T7-yt-2us"/>
                             <constraint firstItem="kP9-Eu-X5i" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GYK-LF-EdO"/>
                             <constraint firstItem="obk-4E-4u9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Wsi-fN-WGg"/>
-                            <constraint firstItem="kP9-Eu-X5i" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="fZv-v5-a2Z"/>
                             <constraint firstItem="kP9-Eu-X5i" firstAttribute="top" secondItem="obk-4E-4u9" secondAttribute="bottom" id="kZN-2N-wnS"/>
                             <constraint firstItem="obk-4E-4u9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="n6e-Gy-9Bk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kP9-Eu-X5i" secondAttribute="bottom" id="ssq-Fu-O0G"/>
@@ -82,7 +81,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hS8-Dp-kus">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hS8-Dp-kus">
                                 <rect key="frame" x="96.666666666666686" y="171" width="200" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="DmV-tL-h8Y"/>

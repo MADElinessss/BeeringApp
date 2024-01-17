@@ -14,12 +14,16 @@ class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var list: [Beer] = []
+    var filterList : [Beer] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     let manager = APIManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("1")
+
         configureTableView()
         loadData()
     }
@@ -30,27 +34,19 @@ class ListViewController: UIViewController {
         
         let xib = UINib(nibName: BeerListTableViewCell.identifier, bundle: nil)
         tableView.register(xib, forCellReuseIdentifier: BeerListTableViewCell.identifier)
-        
-        print("configureTableView - 완료")
     }
     
     func loadData() {
-        print("loadData - 시작")
         manager.callRequest { [weak self] beers in
-            DispatchQueue.main.async {
-                print("API 응답 받음, 맥주 개수: \(beers.count)")
-                self?.list = beers.sorted { $0.name < $1.name }
-                self?.tableView.reloadData()
-                print("loadData - 완료, 테이블 뷰 리로드")
-            }
+            self?.list = beers.sorted { $0.name < $1.name }
+            self?.tableView.reloadData()
         }
+        filterList = list
     }
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberOfRowsInSection: \(list.count)")
         return list.count
     }
     
@@ -63,9 +59,36 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         if let url = URL(string: beer.image_url ?? "") {
             cell.beerImageView.kf.setImage(with: url)
         }
-        print("cellForRowAt[\(indexPath.row)] - \(beer.name)")
-
+        
         return cell
     }
+}
+
+extension ListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        var filterData: [Beer] = []
+        for item in list {
+            if item.name.contains(searchBar.text!) || item.description.contains(searchBar.text!) {
+                filterData.append(item)
+            }
+        }
+        filterList = filterData
+    }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        var filterData: [Beer] = []
+        for item in list {
+            if item.name.contains(searchBar.text!) || item.description.contains(searchBar.text!) {
+                filterData.append(item)
+            }
+        }
+        filterList = filterData
+        view.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        filterList = list
+        searchBar.text = ""
+        view.endEditing(true)
+    }
 }
